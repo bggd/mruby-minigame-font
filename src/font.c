@@ -145,7 +145,7 @@ mrb_mruby_minigame_font_gem_init(mrb_state *mrb)
 
   default_color = al_map_rgb(255, 255, 255);
 
-  font_cls = mrb_define_class_under(mrb, mrb_class_get(mrb, "Minigame"), "Font", mrb->object_class);
+  font_cls = mrb_define_class_under(mrb, mrb_module_get(mrb, "Minigame"), "Font", mrb->object_class);
   MRB_SET_INSTANCE_TT(font_cls, MRB_TT_DATA);
 
   mrb_define_class_method(mrb, font_cls, "load", font_load, MRB_ARGS_REQ(2));
