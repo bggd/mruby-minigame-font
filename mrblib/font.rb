@@ -1,7 +1,5 @@
 class Minigame::Font
-
-
-  def to_image(text, color=Minigame::Color.rgb)
+  def to_image(text, color=Minigame::Color.rgb(255, 255, 255))
 
     img = Minigame::Image.new(text_width(text), h(), Minigame::Color.rgb(0, 0, 0, 0))
 
