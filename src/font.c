@@ -57,6 +57,7 @@ font_draw(mrb_state *mrb, mrb_value self)
   mrb_value opt;
   mrb_value color;
   int align_flags = ALLEGRO_ALIGN_LEFT;
+  int op, src, dst, alpha_op, alpha_src, alpha_dst;
   int argc;
 
   ALLEGRO_FONT *font;
@@ -110,7 +111,11 @@ font_draw(mrb_state *mrb, mrb_value self)
     }
   }
 
+  al_get_separate_blender(&op, &src, &dst, &alpha_op, &alpha_src, &alpha_dst);
+  /* set :premultiplied */
+  al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_INVERSE_ALPHA);
   al_draw_text(font, draw_color, x, y, align_flags, text);
+  al_set_separate_blender(op, src, dst, alpha_op, alpha_src, alpha_dst);
 
   return mrb_nil_value();
 }
